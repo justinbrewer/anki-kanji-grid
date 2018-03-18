@@ -16,7 +16,6 @@
 
 import time,codecs,math,os,unicodedata,datetime,operator
 from aqt import mw
-from anki.js import jquery
 from aqt.utils import showInfo
 from anki.utils import ids2str
 from anki.hooks import addHook
