@@ -169,6 +169,9 @@ def addUnitData(units, unitKey, i, card, timeNow):
 
         units[unitKey].addDataFromCard(i, card, timeNow)
 
+def _normalize_rgb(*args):
+    return list(map(lambda x : int(x * 256), args))
+
 def hsvrgbstr(h, s=0.8, v=0.9):
     i = int(h*6.0)
     f = (h*6.0) - i
@@ -176,12 +179,15 @@ def hsvrgbstr(h, s=0.8, v=0.9):
     q = v*(1.0 - s*f)
     t = v*(1.0 - s*(1.0-f))
     i = i%6
-    if i == 0: return "#%0.2X%0.2X%0.2X" % (v*256,t*256,p*256)
-    if i == 1: return "#%0.2X%0.2X%0.2X" % (q*256,v*256,p*256)
-    if i == 2: return "#%0.2X%0.2X%0.2X" % (p*256,v*256,t*256)
-    if i == 3: return "#%0.2X%0.2X%0.2X" % (p*256,q*256,v*256)
-    if i == 4: return "#%0.2X%0.2X%0.2X" % (t*256,p*256,v*256)
-    if i == 5: return "#%0.2X%0.2X%0.2X" % (v*256,p*256,q*256)
+
+    if i == 0: values = _normalize_rgb(v,t,p)
+    if i == 1: values = _normalize_rgb(q,v,p)
+    if i == 2: values = _normalize_rgb(p,v,t)
+    if i == 3: values = _normalize_rgb(p,q,v)
+    if i == 4: values = _normalize_rgb(t,p,v)
+    if i == 5: values = _normalize_rgb(v,p,q)
+
+    return "#{:02X}{:02X}{:02X}".format(*values)
 
 class KanjiGridAuto:
     def __init__(self, mw):
