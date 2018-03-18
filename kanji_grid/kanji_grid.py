@@ -187,7 +187,7 @@ class KanjiGridAuto:
     def __init__(self, mw):
         if mw:
             self.menuAction = QAction("Generate Kanji Grid Automatic", mw)
-            mw.connect(self.menuAction, SIGNAL("triggered()"), self.setup)
+            self.menuAction.triggered.connect(self.setup)
             mw.form.menuTools.addSeparator()
             mw.form.menuTools.addAction(self.menuAction)
             
