@@ -22,6 +22,7 @@ from anki.hooks import addHook
 from aqt.webview import AnkiWebView
 from aqt.qt import *
 from functools import reduce
+import os
 
 # ------------------ CUSTOMIZATION START ------------------
 #Define the names of fields to search for kanji. Examples: "Kanji" or "front" or "Japanese". Not case sensitive. 
@@ -34,7 +35,7 @@ _pattern = ["Kanji", "Japanese", "front"]
 _literal = False
 
 #Where to put the different output folders of this add-on. 
-_filePathBase = "C:/Users/WRITE-YOUR-OWN-SAVE-PATH/Desktop/Japanese/My Projects/Anki Kanji Grid/"
+_filePathBase = os.path.expanduser("~/anki-kanji-grid/")
 
 #how many days interval for mature card - this affects the coloring of the grid. The higher the number, the better you have to know the kanji to get the blue color"
 _interval = 180
