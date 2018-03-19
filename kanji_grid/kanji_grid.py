@@ -325,7 +325,8 @@ class KanjiGridAuto:
         self.win = QDialog(mw)
         self.wv = AnkiWebView()
         self.wv.setHtml(self.html)
-        self.savepng(currentTime)
+        self.wv.show()
+        #self.savepng(currentTime)
         return 0
 
     
@@ -359,7 +360,6 @@ class KanjiGridAuto:
         
         fileName = filePath + currentTime + ".png"
         
-        self.wv.show()
         image = QImage(self.wv.size(), QImage.Format_ARGB32)
         
         #Actually make/render the image
